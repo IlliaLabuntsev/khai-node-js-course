@@ -1,23 +1,20 @@
 {
-  "name": "nodejs-course",
-  "version": "1.0.0",
-  "description": "",
-  "homepage": "https://github.com/IlliaLabuntsev/khai-node-js-course#readme",
-  "bugs": {
-    "url": "https://github.com/IlliaLabuntsev/khai-node-js-course/issues"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/IlliaLabuntsev/khai-node-js-course.git"
-  },
-  "license": "ISC",
-  "author": "Illia Labuntsev",
-  "type": "commonjs",
-  "main": "index.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "dependencies": {
-    "express": "^5.1.0"
-  }
+ "name": "nodejs-course",
+ "version": "1.0.0",
+ "description": "",
+ "main": "src/index.js",
+ "scripts": {
+  "test": "echo \"Error: no test specified\" && exit 1",
+  "server": "node src/index.js",
+  "migration:generate": "drizzle-kit generate:pg",
+  "migration:push": "drizzle-kit push:pg"
+ },
+ "author": "Illia Labuntsev",
+ "license": "ISC",
+ "dependencies": {
+  "drizzle-kit": "^0.20.14",
+  "drizzle-orm": "^0.30.1",
+  "express": "4.18.2",
+  "pg": "^8.11.3"
+ }
 }

@@ -1,24 +1,16 @@
-const express = require('express');
-const productRouter = require('./product.router');
+import { drizzle } from 'drizzle-orm/node-postgres';
+import { Client } from 'pg';
+import * as schema from './src/db/schema';
 
-const app = express();
-const PORT = 3000;
 
-// Middleware for JSON
-app.use(express.json());
+const client = new Client({
+   host: '127.0.0.1',
+   port: 5432,
+   user: 'nodejs_course_admin',
+   password: 'my_password',
+   database: 'nodejs_course_database',
 
-// Register routes
-// ❗ Якщо хочеш, щоб усі шляхи були типу /products...
-app.use('/', productRouter);
-
-// Global error handler
-app.use((err, req, res, next) => {
-    console.error(err);
-    res.status(err.statusCode || 500).json({
-        error: err.message || 'Internal Server Error'
-    });
 });
 
-app.listen(PORT, () => {
-    console.log(`Server running on http://localhost:${PORT}`);
-});
+await client.connect();
+export const db = drizzle(client, { schema });
