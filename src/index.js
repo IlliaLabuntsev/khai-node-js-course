@@ -1,15 +1,16 @@
 const express = require('express');
 const productRouter = require('../product.router');
-
+const userRouter = require('./user/user.router.js');
+const bodyParser = require('body-parser');
 const app = express();
 const PORT = 3000;
 
 // Middleware for JSON
-app.use(express.json());
+app.use(bodyParser.json());
 
 // Register routes
-// ❗ Якщо хочеш, щоб усі шляхи були типу /products...
 app.use('/', productRouter);
+app.use(userRouter);
 
 // Global error handler
 app.use((err, req, res, next) => {
