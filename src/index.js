@@ -1,16 +1,23 @@
 const express = require('express');
-const productRouter = require('../product.router');
+const productRoutes = require('./product.routes');
 const userRouter = require('./user/user.router.js');
 const bodyParser = require('body-parser');
+const productRouter = require('./product/product.router');
 const app = express();
 const PORT = 3000;
 
 // Middleware for JSON
+app.use(productRoutes);
 app.use(bodyParser.json());
+app.use(userRouter);
+app.use(productRouter);
 
 // Register routes
-app.use('/', productRouter);
-app.use(userRouter);
+console.log(productRouter);
+
+// app.post('/products', (req, res) => {
+//     res.send('WORKS');
+// });
 
 // Global error handler
 app.use((err, req, res, next) => {
